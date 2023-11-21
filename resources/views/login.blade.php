@@ -9,52 +9,52 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0 "></script>
     @vite('resources/css/app.css')
 </head>
-<body>
+<body class="body font">
     <section>
         <div class="formDiv">
             <div class="">
                 <form class="form" action="{{ route('loginAuth')}}" method="POST">
+
+                    <img src="/img/profile.png" class="profileImg"></img>
                     @csrf
                     @if (session('message'))
-                    <div class="">
-                        {{ session('message') }}
-                    </div>
-                    @endif
-                    <div class="">
-                        <div class="center">
-                            <label for="correo" >Correo electrónico</label>
+                        <div class="">
+                            {{ session('message') }}
                         </div>
+                    @endif
+                    <div class="p-10v">
                         
+                        <div class="inputLabel">
+                            <label for="">correo</label>
+                        </div>
                         <div>
-                            <input class="input" type="email" placeholder="nombre@ejemplo.com" id="email" name="email" class="">
-                            <hr class="hr">
+                            <input class="input" type="email" id="email" name="email" class="">
                         </div>
                         
                         @error('email')
-                            <p class="">{{ $message }}</p>
+                            <p class="errorMsg">{{ $message }}</p>
                         @enderror
                     </div>
                     <br>
-                    <div class="">
-                        <div class="center">
-                            <label for="contraseña" class="form-label">Contraseña</label>
+                    <div class="p-10v">
+                        <div class="inputLabel">
+                            <label for="">contraseña</label>
                         </div>
-                        
-                        <div>
-                            <input class="input" type="password" placeholder="Ingrese su contraseña" id="password" name="password" class="">
-                            <hr class="hr">
+                        <div >
+                            <input class="input" type="password" id="password" name="password" class="">
                         </div>
                         @error('password')
-                            <p class="">{{ $message }}</p>
+                            <p class="errorMsg">{{ $message }}</p>
                         @enderror
                     </div>
                     <br>
                     <div class= "center">
-                        <button type="submit" class="" >Iniciar Sesión</button>
+                        <button type="submit" class="button" >Iniciar Sesión</button>
                     </div>
-                    <div class= "">
+                    <br>
+                    <div class= "p-10v txt">
                         <label for="cuenta">¿No tiene una cuenta?</label>
-                        <a class="" href="register">Regístrate</a>
+                        <a class="link" href="register">Regístrate</a>
                     </div>
                 </form>
             </div>

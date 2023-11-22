@@ -1,0 +1,19 @@
+.buttonNav{
+    background-image: linear-gradient(20deg, RGB(100,50,200), RGB(200,50,50));
+    border: none;
+    border-radius: 10px;
+    width: 220px;
+    height: 40px;
+    font-size: 15px;
+    color: white;
+    opacity: 0.8;
+    transition-duration: 0.2s;
+    
+}
+
+.buttonNav:hover{
+    opacity: 1.2;
+    cursor: pointer;
+    font-size: 16px;
+    background-image: linear-gradient(360deg, RGB(150,50,200), RGB(200,50,50));
+}

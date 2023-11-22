@@ -4,45 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0 "></script>
-    @vite('resources/css/app.css')
+    @vite('resources/css/login.css')
 </head>
 <body class="body">
-    <section class="font container">
-        <div class="containerbackground">
-            <p>import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*; // needed for event handling
-
-public class Snake
-  
-  static final int SCREEN_SIZE_X=40;         // In units of snake sections.
-  static final int SCREEN_SIZE_Y=30;
-  
-  final int MAX_SNAKE_LENGTH = 1000;
-  
-  // While a snake is created with a very large number of snake sections,
-  // determined by the constant variable MAX_SNAKE_LENGTH, the actual
-  // apparent length of the snake in the game will be controlled by the
-  // variable snakeLength. At each time step, the program will only draw
-  // snakeLength snake sections for each snake. 
-  //
-  // Each time the snake eats some "food" (a yellow box on the screen), 
-  // the snakeLength for that snake will
-  // grow by the value of the food, which is printed in the box representing the
-  // food. 
-  
-  int snakeLength = 5;                      // Start snakes with length 5.
-  SnakeSection [] snakeSecs = new SnakeSection[MAX_SNAKE_LENGTH];
-   
-  // These variables represent the direction the snake is going.
-
-    </p>
+<div class="backgroundText">
+            <p>
+                import java.awt.*;
+                import javax.swing.*;
+                import java.awt.event.*; // needed for event handling
+            </p>
+            <p>
+                public boolean checkBodyPositions(SnakeSection s) {
+                boolean collision=false;
+            </p>
+            <p>
+                for (int i=1; i< snakeLength i++) {
+                    
+                if (s.match(snakeSecs[i]))
+                    collision=true;
+                }
+                    return collision;
+                }
+            </p>
+            <p>
+                public void move() {
+                for (int i=snakeLength-1; i>0; i--)
+                snakeSecs[i]=snakeSecs[i-1];
+            </p>
+            <p>
+                int newX=(snakeSecs[1].x + dirX + SCREEN_SIZE_X) % SCREEN_SIZE_X;
+                int newY=(snakeSecs[1].y + dirY + SCREEN_SIZE_Y) % SCREEN_SIZE_Y;
+                snakeSecs[0]=new SnakeSection(newX,newY);
+                }
+            </p>
+            <p>
+                public void paint(Graphics g) { 
+                g.setColor(color);
+                for (int i=0; i< snakeLength; i++) {
+            </p>
+            <p>
+                g.setColor(new Color((float) Math.random(), (float) Math.random(), (float) Math.random()));
+                g.drawRect(snakeSecs[i].x*20,snakeSecs[i].y*20,20,20);
+                }
+                }
+                
+            </p>
+            <p>
+                import java.awt.*;
+                import javax.swing.*;
+                import java.awt.event.*; // needed for event handling
+            </p>
+            <p>
+                public boolean checkBodyPositions(SnakeSection s) {
+                boolean collision=false;
+            </p>
+            <p>
+                for (int i=1; i< snakeLength i++) {
+                    
+                if (s.match(snakeSecs[i]))
+                    collision=true;
+                }
+                    return collision;
+                }
+            </p>
+            <p>
+                public void move() {
+                for (int i=snakeLength-1; i>0; i--)
+                snakeSecs[i]=snakeSecs[i-1];
+            </p>
+            <p>
+                int newX=(snakeSecs[1].x + dirX + SCREEN_SIZE_X) % SCREEN_SIZE_X;
+                int newY=(snakeSecs[1].y + dirY + SCREEN_SIZE_Y) % SCREEN_SIZE_Y;
+                snakeSecs[0]=new SnakeSection(newX,newY);
+                }
+            </p>
+            <p>
+                public void paint(Graphics g) { 
+                g.setColor(color);
+                for (int i=0; i< snakeLength; i++) {
+            </p>
+            <p>
+                g.setColor(new Color((float) Math.random(), (float) Math.random(), (float) Math.random()));
+                g.drawRect(snakeSecs[i].x*20,snakeSecs[i].y*20,20,20);
+                }
+                }
+                
+            </p>
+            <p>
+                g.setColor(new Color((float) Math.random(), (float) Math.random(), (float) Math.random()));
+                g.drawRect(snakeSecs[i].x*20,snakeSecs[i].y*20,20,20);
+            </p>
+            
         </div>
+    <section class="font container">
         <div>
-            <h1 class="center socialDev">
+            <h1 class="center title">
                 Social_Dev
             </h1>
         </div>
@@ -53,7 +109,7 @@ public class Snake
                     <img src="/img/profile.png" class="profileImg"></img>
                     @csrf
                     @if (session('message'))
-                        <div class="">
+                        <div class="errorMsg">
                             {{ session('message') }}
                         </div>
                     @endif
@@ -83,14 +139,12 @@ public class Snake
                         @enderror
                     </div>
                     <br>
+                    <br>
                     <div class= "center">
                         <button type="submit" class="button" >Iniciar Sesión</button>
                     </div>
                     <br>
-                    <div class= "p-10v txt">
-                        <label for="cuenta">¿No tiene una cuenta?</label>
-                        <a class="link" href="register">Regístrate</a>
-                    </div>
+
                 </form>
             </div>
         </div>

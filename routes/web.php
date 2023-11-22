@@ -20,3 +20,4 @@ Route::redirect('/', '/dashboard');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'loginAuth'])->name('loginAuth');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

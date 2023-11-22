@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        if(auth()->check())
+        if(session('auth'))
         {
             return view('dashboard');
         }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
+
+    public static $auth = false;
 
     public function index()
     {
@@ -23,30 +24,34 @@ class LoginController extends Controller
 
         $messages = makeMessages();
 
-        // Validar la información
+        //Validar la información
         $this->validate($request, [
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8']
+            'password' => ['required']
         ], $messages);
 
-        $response = Http::post('http://127.0.0.1:8000/api/users');
+        $credentials = $request->only('email', 'password');
 
-        $data = $response->json();
-        dd($data);
+        $response = Http::post('http://192.168.0.5:8000/api/login', $credentials)->json();
 
-        // $data = json_decode($response, true);
+        if(isset($response["users_para_admin"])){
+            session([
+                'auth' => true,
+                'user' => 'adminstrador'
+            ]);
+            return redirect()->route('dashboard');
+        }
+        else
+        {
+            return back()->with('message', 'Usuario no registrado o contraseña incorrecta');
+        }
 
-        // var_dump($data);
-
-        // if ($data === null) {
-        //     die('Error al decodificar los datos JSON');
-        // }
-
-        // if(!auth()->attempt($request->only('email', 'password'), $request->remember))
-        // {
-        //     return back()->with('message', 'Usuario no registrado o contraseña incorrecta');
-        // }
-        
         return redirect()->route('dashboard');
+    }
+
+    public function logout()
+    {
+        session(['auth' => false]);
+        return redirect()->route('login');
     }
 }

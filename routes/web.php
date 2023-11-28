@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Middleware\AuthLogin;
+use Illuminate\Auth\Events\Authenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,12 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::redirect('/', '/dashboard');
+Route::redirect('/', '/login');
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::middleware([AuthLogin::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'loginAuth'])->name('loginAuth');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

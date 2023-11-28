@@ -10,21 +10,18 @@ class LoginController extends Controller
 
     public static $auth = false;
 
-    public function index()
+    //redirecciona al login
+    public function login()
     {
-
-        // if(auth()->check()){
-        //     return redirect()->route('dashboard');
-        // };
         return view('login');
     }
 
+    //Comprueba los datos del adminsitrador
     public function loginAuth(Request $request)
     {
-
         $messages = makeMessages();
 
-        //Validar la información
+        //Valida la informaición
         $this->validate($request, [
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -32,8 +29,12 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        //Se obtiene la respuesta desde la API utilizando las credenciales
         $response = Http::post('http://192.168.0.5:8000/api/login', $credentials)->json();
 
+        //Verifica que se haya obtenido la respuesta esperdada. 
+        //Si no es así, redirecciona al login indicando que las credenciales son incorrectas.
+        //dd($credentials);
         if(isset($response["users_para_admin"])){
             session([
                 'auth' => true,
@@ -45,10 +46,9 @@ class LoginController extends Controller
         {
             return back()->with('message', 'Usuario no registrado o contraseña incorrecta');
         }
-
-        return redirect()->route('dashboard');
     }
 
+    //Cierra la sesión
     public function logout()
     {
         session(['auth' => false]);

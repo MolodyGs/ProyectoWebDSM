@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    @vite('resources/css/dashboard.css')
     @vite('resources/css/login.css')
+    @vite('resources/css/keyframes.css')
+    <title>@yield('title')</title>
 </head>
 <body class="body">
 <div class="backgroundText">
@@ -138,7 +140,6 @@
                             <p class="errorMsg">{{ $message }}</p>
                         @enderror
                     </div>
-                    <br>
                     <br>
                     <div class= "center">
                         <button type="submit" class="button" >Iniciar Sesión</button>

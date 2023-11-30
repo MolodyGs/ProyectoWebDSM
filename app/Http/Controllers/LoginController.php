@@ -13,7 +13,7 @@ class LoginController extends Controller
     //redirecciona al login
     public function login()
     {
-        return view('login');
+        return view('layouts.login');
     }
 
     //Comprueba los datos del adminsitrador
@@ -38,7 +38,7 @@ class LoginController extends Controller
         if(isset($response["users_para_admin"])){
             session([
                 'auth' => true,
-                'user' => 'adminstrador'
+                'user' => 'administrador'
             ]);
             return redirect()->route('dashboard');
         }

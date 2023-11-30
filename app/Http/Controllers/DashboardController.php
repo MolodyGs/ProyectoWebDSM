@@ -9,6 +9,6 @@ class DashboardController extends Controller
     //Redirecciona al dashboard.
     public function dashboard()
     {
-        return view('dashboard');
+        return view('layouts.dashboard');
     }
 }

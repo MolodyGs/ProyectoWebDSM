@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
     @vite('resources/css/dashboard.css')
     @vite('resources/css/login.css')
+    @vite('resources/css/keyframes.css')
+    <title>@yield('title')</title>
 </head>
 <body class="body">
     <nav>
@@ -17,10 +18,29 @@
         </div>
     </nav>
     <div>
-        <h1 class="center title">
+        <h1 class="titleWelcome">
             Bienvenido {{session('user')}}
         </h1>
     </div>
+    <table class="table">
+        <tr>
+            <td>
+                <div class="panel">
+
+                </div>
+            </td>
+            <td>
+                <div class="panel">
+
+                </div>
+            </td>
+            <td>
+                <div class="panel">
+
+                </div>
+            </td>
+        </tr>
+    </table>
 
 </body>
 </html>

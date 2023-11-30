@@ -19,11 +19,9 @@ use Illuminate\Auth\Events\Authenticated;
 
 Route::redirect('/', '/login');
 
-// Route::middleware([AuthLogin::class])->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-// });
-
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::middleware([AuthLogin::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'loginAuth'])->name('loginAuth');

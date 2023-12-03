@@ -60,14 +60,4 @@ class LoginController extends Controller
         }
     }
 
-    //Cierra la sesión
-    public function logout()
-    {
-        session([
-            'auth' => false,
-            'posts' => '',
-            'users' => ''
-        ]);
-        return redirect()->route('login');
-    }
 }

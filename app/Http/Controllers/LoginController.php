@@ -30,16 +30,28 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         //Se obtiene la respuesta desde la API utilizando las credenciales
-        $response = Http::post('http://192.168.0.5:8000/api/login', $credentials)->json();
+        $response = Http::post('http://192.168.0.2:8000/api/login', $credentials)->json();
 
         //Verifica que se haya obtenido la respuesta esperdada. 
         //Si no es así, redirecciona al login indicando que las credenciales son incorrectas.
-        //dd($credentials);
         if(isset($response["users_para_admin"])){
+            $usersAll = $response["users_para_admin"];
+            $post = $response["lospost_admin"];
+            $users = array();
+
+            foreach($usersAll as $user){
+                if($user['role'] === 'usuario'){
+                    array_push($users, $user);
+                }
+            }
+
             session([
                 'auth' => true,
-                'user' => 'administrador'
+                'user' => 'administrador',
+                'posts' => $post,
+                'users' => $users
             ]);
+            
             return redirect()->route('dashboard');
         }
         else
@@ -51,7 +63,11 @@ class LoginController extends Controller
     //Cierra la sesión
     public function logout()
     {
-        session(['auth' => false]);
+        session([
+            'auth' => false,
+            'posts' => '',
+            'users' => ''
+        ]);
         return redirect()->route('login');
     }
 }

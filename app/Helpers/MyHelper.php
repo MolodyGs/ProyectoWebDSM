@@ -10,8 +10,8 @@ function makeMessages()
         'name_user.required' => 'Debe completar el campo nombre',
         'name_user.min' => 'El largo del nombre es inferior a :min caracteres',
         'name.min' => 'El campo nombre debe tener al menos :min caracteres',
-        'email.required' => 'Debe completar el campo correo',
-        'password.required' => 'Debe completar el campo contraseña',
+        'email.required' => '⚠ Debe completar el campo correo',
+        'password.required' => '⚠ Debe completar el campo contraseña',
         'price.required' => 'El campo precio es obligatorio',
         'date.after' => 'La fecha debe ser mayor a ' . date("d-m-Y"),
         'date.unique' => 'la fecha ya se encuentra ocupada',
@@ -32,14 +32,6 @@ function makeMessages()
         'email_search.required' => 'Ingrese un correo electrónico válido.',
         'email_search.email' => 'Ingrese un correo electrónico válido.',
         'email_search.string' => 'Ingrese un correo electrónico válido.',
-
-        'quantity.required' => 'El campo cantidad de entradas es requerido.',
-        'quantity.min' => 'La cantidad de entradas debe ser mayor o igual a :min.',
-        'quantity.numeric' => 'La cantidad de entradas ingresadas no es numérica.',
-
-        'paymentMethod.required' => 'El campo medio de pago es requerido.',
-
-
 
     ];
 

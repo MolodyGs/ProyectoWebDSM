@@ -6,10 +6,10 @@
     @vite('resources/css/dashboard.css')
     @vite('resources/css/login.css')
     @vite('resources/css/keyframes.css')
-    <title>@yield('title')</title>
+    <title>login</title>
 </head>
 <body class="body">
-<div class="backgroundText">
+    <div class="backgroundText">
             <p>
                 import java.awt.*;
                 import javax.swing.*;

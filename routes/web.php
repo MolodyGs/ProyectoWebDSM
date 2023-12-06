@@ -28,3 +28,4 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'loginAuth'])->name('loginAuth');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post('/dashboard', [DashboardController::class, 'findUser']);

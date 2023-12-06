@@ -34,22 +34,35 @@ class LoginController extends Controller
 
         //Verifica que se haya obtenido la respuesta esperdada. 
         //Si no es así, redirecciona al login indicando que las credenciales son incorrectas.
-        if(isset($response["users_para_admin"])){
-            $usersAll = $response["users_para_admin"];
-            $post = $response["lospost_admin"];
+        if(isset($response["users"])){
+
+            $usersAll = $response["users"];
+            $posts = $response["posts"];
             $users = array();
+            $inactiveUsers = 0;
+            $activeUsers = 0 ;
+            $postsCount = count($posts);
 
             foreach($usersAll as $user){
                 if($user['role'] === 'usuario'){
+
                     array_push($users, $user);
+                    if($user['status'] === '0'){
+                        $inactiveUsers++;
+                    }{
+                        $activeUsers++;
+                    }
                 }
             }
 
             session([
                 'auth' => true,
                 'user' => 'administrador',
-                'posts' => $post,
-                'users' => $users
+                'posts' => $posts,
+                'postsCount' => $postsCount,
+                'users' => $users,
+                'inactiveUsers' => $inactiveUsers,
+                'activeUsers' => $activeUsers
             ]);
             
             return redirect()->route('dashboard');
